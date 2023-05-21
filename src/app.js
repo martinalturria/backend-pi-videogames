@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 
-require('./db.js');
+require('./db');
 
 const routes = require('./routes/index.js');
 
