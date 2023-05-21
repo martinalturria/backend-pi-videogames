@@ -2,7 +2,7 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { DB_USER, DB_PASSWORD, DB_HOST, BDD_NAME, DB_DEPLOY } = process.env;
+const DB_DEPLOY = process.env;
 
 // const sequelize = new Sequelize(
 //     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${BDD_NAME}`,
@@ -12,17 +12,10 @@ const { DB_USER, DB_PASSWORD, DB_HOST, BDD_NAME, DB_DEPLOY } = process.env;
 //     }
 // );
 
-
-
-const sequelize = new Sequelize(
-    DB_DEPLOY,
-    {
-        logging: false, // establece que no se muestren los console.log de las consultas realizadas por sequelize
-        native: false, // permite que Sequelize sepa que podemos usar pg-native para para opitimizar la velocidad
-    }
-);
-
-
+const sequelize = new Sequelize(`${DB_DEPLOY}`, {
+    logging: false, // establece que no se muestren los console.log de las consultas realizadas por sequelize
+    native: false, // permite que Sequelize sepa que podemos usar pg-native para para opitimizar la velocidad
+});
 
 const basename = path.basename(__filename);
 
@@ -54,9 +47,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Videogame, Genre } = sequelize.models;
 // Aca vendrian las relaciones entre las tablas de la BD
 
-Videogame.belongsToMany(Genre, {through: "Videogames_Genres"})
-Genre.belongsToMany(Videogame, {through: "Videogames_Genres"})
-
+Videogame.belongsToMany(Genre, { through: "Videogames_Genres" });
+Genre.belongsToMany(Videogame, { through: "Videogames_Genres" });
 
 module.exports = {
     ...sequelize.models, // para poder importar los modelos así: const { Videogame, Genre } = require('./db.js');
