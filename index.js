@@ -22,7 +22,7 @@ const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 const { PORT } = process.env;
 
-const port = PORT || 3001;
+const port = PORT || 3000;
 
 // Sincronizamos la BDD y levantamos el server.
 conn.sync({ force: true }).then(() => {
