@@ -12,7 +12,7 @@ const DB_DEPLOY = process.env;
 //     }
 // );
 
-const sequelize = new Sequelize(`${DB_DEPLOY}`, {
+const sequelize = new Sequelize(`postgresql://postgres:bmR1dyaRTs0Wrus9COkQ@containers-us-west-163.railway.app:6699/railway`, {
     logging: false, // establece que no se muestren los console.log de las consultas realizadas por sequelize
     native: false, // permite que Sequelize sepa que podemos usar pg-native para para opitimizar la velocidad
 });
