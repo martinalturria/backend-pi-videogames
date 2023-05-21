@@ -26,7 +26,7 @@ const port = PORT || 3001;
 
 // Sincronizamos la BDD y levantamos el server.
 conn.sync({ force: true }).then(() => {
-    server.listen(3001, () => {
+    server.listen(port, () => {
         console.log(`listening at ${port}`);
     });
 });
