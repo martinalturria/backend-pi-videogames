@@ -15,7 +15,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST, BDD_NAME, DB_DEPLOY } = process.env;
 
 
 const sequelize = new Sequelize(
-    `${DB_DEPLOY}`,
+    DB_DEPLOY,
     {
         logging: false, // establece que no se muestren los console.log de las consultas realizadas por sequelize
         native: false, // permite que Sequelize sepa que podemos usar pg-native para para opitimizar la velocidad
