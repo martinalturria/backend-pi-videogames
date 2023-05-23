@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
                 allowNull: false,
             },
             image: {
-                type: DataTypes.TEXT,
+                type: DataTypes.STRING,
                 allowNull: false,
             },
             released: {
@@ -45,8 +45,9 @@ module.exports = (sequelize) => {
             rating: {
                 type: DataTypes.FLOAT, // Va a ser un numero con coma, por eso elegi el formato FLOAT
                 allowNull: false,
+                defaultValue: 1,
                 validate: {
-                    min: 0,
+                    min: 1,
                     max: 5,
                 },
             },

@@ -7,7 +7,6 @@ const getApiGames = async (id = undefined) => {
         const { data } = await axios.get(
             `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
         );
-        // Devuelvo el objeto con las propiedades a mostrar en Detail, mapeando el nombre de las platforms y los genres
         return {
             id: data.id,
             name: data.name,
@@ -24,17 +23,20 @@ const getApiGames = async (id = undefined) => {
         };
     }
 
-    // Genero el Array de Promesas llamando a cada página de la API con su tamaño máximo por página indicado en la Documentacion de la misma, luego al Array se lo paso al Promise.all para optimizar la velocidad de lectura de los games
-    const promises = [ axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}&page=1&page_size=40`        
-    ), axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}&page=2&page_size=40`
-    ), axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}&page=3&page_size=40`
-    )];
+    const promises = [
+        axios.get(
+            `https://api.rawg.io/api/games?key=${API_KEY}&page=1&page_size=40`
+        ),
+        axios.get(
+            `https://api.rawg.io/api/games?key=${API_KEY}&page=2&page_size=40`
+        ),
+        axios.get(
+            `https://api.rawg.io/api/games?key=${API_KEY}&page=3&page_size=40`
+        ),
+    ];
 
     const results = [];
- 
+
     // Utilizo Promise All para ejecutar todas las promesas y guardar la info necesaria:
     /**
       1- Resuelvo todas las promesas del Array promise que va a tener las promesas de cada pagina

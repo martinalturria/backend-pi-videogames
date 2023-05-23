@@ -12,7 +12,7 @@ const {
 const {
     validateGetName,
     validateDeleteId,
-    validateUpdateDeleteById,
+    validateUpdatePostById,
 } = require("../middlewares/validates");
 
 const videoGamesRouter = Router();
@@ -22,8 +22,8 @@ videoGamesRouter.get("/", validateGetName, getVideogamesHandler);
 
 videoGamesRouter.get("/:id", getVideoGameHandler);
 videoGamesRouter.delete("/:id", validateDeleteId, deleteGameHandler);
-videoGamesRouter.put("/:id", validateUpdateDeleteById, updateGameHandler);
+videoGamesRouter.put("/:id", validateUpdatePostById, updateGameHandler);
 
-videoGamesRouter.post("/", validateUpdateDeleteById, createVideogameHandler);
+videoGamesRouter.post("/", validateUpdatePostById, createVideogameHandler);
 
 module.exports = videoGamesRouter;

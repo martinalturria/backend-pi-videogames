@@ -10,9 +10,9 @@ const getBddGames = async (id = undefined) => {
             },
         },
     };
+
     if (!id) {
         const gamesBDD = await Videogame.findAll(condition);
-        // Mapeo para agregar solamente las propiedades que necesito
         return gamesBDD.map((game) => {
             return {
                 id: game.id,
@@ -20,7 +20,6 @@ const getBddGames = async (id = undefined) => {
                 image: game.image,
                 rating: game.rating,
                 genres: game.Genres.map((genre) => {
-                    // Convierto a los genres en un array con los nombres solamente
                     return genre.name;
                 }),
                 created: game.created,
@@ -30,9 +29,6 @@ const getBddGames = async (id = undefined) => {
 
     const findGame = await Videogame.findByPk(id, condition);
 
-    if(!findGame) throw new Error("No record found with the provided ID")
-
-    // Convierto los datos recibidos desde la BDD exactamente igual a los obtenidos en la API y retorno
     return {
         id: findGame.id,
         name: findGame.name,

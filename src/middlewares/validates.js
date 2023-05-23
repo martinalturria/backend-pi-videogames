@@ -13,8 +13,8 @@ const validateDeleteId = (req, res, next) => {
     next();
 };
 
-const validateUpdateDeleteById = (req, res, next) => {
-    const { name, description, platforms, image, released, rating, genres } =
+const validateUpdatePostById = (req, res, next) => {
+    const { name, description, platforms, image, released, rating } =
         req.body;
     const { id } = req.params;
     // Como solo podemos modificar los datos de la BDD verificamos que el id no sea un numero, si no, lanzamos un error
@@ -35,5 +35,5 @@ const validateUpdateDeleteById = (req, res, next) => {
 module.exports = {
     validateGetName,
     validateDeleteId,
-    validateUpdateDeleteById,
+    validateUpdatePostById,
 };

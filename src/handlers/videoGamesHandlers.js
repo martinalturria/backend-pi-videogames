@@ -38,7 +38,7 @@ const getVideoGameHandler = async (req, res) => {
 const deleteGameHandler = async (req, res) => {
     const { id } = req.params;
     try {
-        const message = await deleteGameController(id);
+        await deleteGameController(id);
         return res.status(200).json("The game has been deleted successfully");
     } catch (error) {
         return res
@@ -53,7 +53,7 @@ const updateGameHandler = async (req, res) => {
         req.body;
 
     try {
-        const gameUpdate = await updateGameController(
+        const message = await updateGameController(
             id,
             name,
             description,
@@ -63,20 +63,19 @@ const updateGameHandler = async (req, res) => {
             rating,
             genres
         );
-        return res.status(201).json("The game was successfully updated");
+        return res.status(201).json(message);
     } catch (error) {
         return res.status(404).json({ error: error.message });
     }
 };
 
+
 const createVideogameHandler = async (req, res) => {
-    // Handler donde crearemos los videogame
     const { name, description, platforms, image, released, rating, genres } =
         req.body;
 
     try {
         await postVideogameController(
-            // controller que se encarga de crear el videogame y devolverlo
             name,
             description,
             platforms,
