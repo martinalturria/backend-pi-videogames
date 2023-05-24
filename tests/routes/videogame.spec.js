@@ -5,15 +5,15 @@ const app = require("../../src/app.js");
 
 const agent = session(app);
 
-describe("Test de RUTAS", () => {
+describe("route test", () => {
     describe("GET /genres/", () => {
-        it("Responde con status: 200", () => {
+        it("Reply with status: 200", () => {
             () => agent.get("/genres").expect(200);
         });
-        it('Responde un Array con los objetos de cada Genre: [{"id", "name"}, {"id", "name"}]', async () => {
+        it('Returns an Array with the objects of each Genre: [{"id", "name"}, {"id", "name"}]', () => {
             () => {
                 const response = agent.get("/genres");
-                expect(response.body).to.be.an("array"); // Verifica que la respuesta sea un array
+                expect(response.body).to.be.an("array"); 
                 expect(
                     response.body.every(
                         (obj) =>
@@ -26,12 +26,12 @@ describe("Test de RUTAS", () => {
     });
 });
 
-describe("Test de RUTAS", () => {
+describe("route test", () => {
     describe("GET /videogames/:id", () => {
-        it("Responde con status: 200", async () => {
+        it("Reply with status: 200", async () => {
             await agent.get("/videogames/1").expect(200);
         });
-        it('Responde un objeto con las propiedades: "id", "name", "image", "platforms", "description", "released", "rating" y genres', async () => {
+        it('Returns an object with the properties: "id", "name", "image", "platforms", "description", "released", "rating", and genres', async () => {
             const response = await agent.get("/videogames/1");
             expect(response.body).to.include.all.keys(
                 "id",
@@ -44,14 +44,14 @@ describe("Test de RUTAS", () => {
                 "genres"
             );
         });
-        it("Si hay un error responde con status: 404", async () => {
+        it("If there is an error, respond with status: 404", async () => {
             await agent.get("/videogames/123551355464").expect(404);
         });
     });
 });
 
 describe("POST /videogames", () => {
-    it("Responde con status: 201 y mensaje de éxito al crear un juego", async () => {
+    it("Responds with status: 201 and success message when creating a game", async () => {
         const newGame = {
             name: "Super Mario",
             description: "A fantastic adventure with Mario.",
@@ -72,10 +72,8 @@ describe("POST /videogames", () => {
         };
     });
 
-    it("Responde con status: 400 y mensaje de error al enviar datos inválidos para crear un juego", async () => {
-        const invalidGame = {
-            // Propiedades faltantes o inválidas para crear un juego
-        };
+    it("Responds with status: 400 and error message when sending invalid data to create a game", async () => {
+        const invalidGame = {};
 
         const response = await agent
             .post("/videogames")
