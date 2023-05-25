@@ -10,6 +10,8 @@ const getGenresControllers = async () => {
     return genresBdd;
 };
 
+
+
 module.exports = {
     getGenresControllers,
 };

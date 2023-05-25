@@ -1,5 +1,7 @@
 // Importo el controllers necesarios para el handler
-const { getGenresControllers } = require("../controllers/genreControllers");
+const {
+    getGenresControllers,
+} = require("../controllers/genreControllers");
 
 const getGenresHandler = async (req, res) => {
     try {
@@ -10,6 +12,8 @@ const getGenresHandler = async (req, res) => {
     }
 };
 
+
 module.exports = {
     getGenresHandler,
+    postGenreHandler,
 };
