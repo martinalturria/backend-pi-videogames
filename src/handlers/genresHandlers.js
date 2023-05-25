@@ -15,5 +15,4 @@ const getGenresHandler = async (req, res) => {
 
 module.exports = {
     getGenresHandler,
-    postGenreHandler,
 };

@@ -4,7 +4,6 @@ const saveGenreBdd = require("../helpers/saveGenreBdd"); // Importo la funcion h
 const getGenresControllers = async () => {
     let genresBdd = await Genre.findAll();
 
-    // Verifico si la BDD esta vacia, si es asi, llamamos a la helper encargada de guardar los genres
     if (!genresBdd.length) return await saveGenreBdd();
 
     return genresBdd;
