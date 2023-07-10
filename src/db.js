@@ -1,22 +1,23 @@
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-
-// const sequelize = new Sequelize(
-//     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${BDD_NAME}`,
-//     {
-//         logging: false, // establece que no se muestren los console.log de las consultas realizadas por sequelize
-//         native: false, // permite que Sequelize sepa que podemos usar pg-native para para opitimizar la velocidad
-//     }
-// );
+const {DB_USER, DB_PASSWORD, DB_HOST, BDD_NAME} = process.env
 
 const sequelize = new Sequelize(
-    `postgresql://postgres:bmR1dyaRTs0Wrus9COkQ@containers-us-west-163.railway.app:6699/railway`,
+    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${BDD_NAME}`,
     {
-        logging: false, 
-        native: false, 
+        logging: false, // establece que no se muestren los console.log de las consultas realizadas por sequelize
+        native: false, // permite que Sequelize sepa que podemos usar pg-native para para opitimizar la velocidad
     }
 );
+
+// const sequelize = new Sequelize(
+//     `postgresql://postgres:bmR1dyaRTs0Wrus9COkQ@containers-us-west-163.railway.app:6699/railway`,
+//     {
+//         logging: false, 
+//         native: false, 
+//     }
+// );
 
 const basename = path.basename(__filename);
 
